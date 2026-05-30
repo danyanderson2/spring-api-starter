@@ -1,6 +1,7 @@
 package com.codewithmosh.store.controllers;
 
-import java.util.List;
+
+import java.util.Iterable
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +14,17 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/users")
 public class UserController {
     private final UserRepository userRepository;
-    @GetMapping("/users")   // alias for RequestMapping because...well it's shorter than RequestMapping
+    @GetMapping()   // alias for RequestMapping because...well it's shorter than RequestMapping
     // http methods can either be GET, PUT POST or DELETE
     public Iterable<User> getAllUsers(){
         return userRepository.findAll();
+    }
+
+   @GetMapping("/{id}")
+    public User getUser(@PathVariable Long id){
+        return userRepository.findById(id).orElse(null);
     }
 }

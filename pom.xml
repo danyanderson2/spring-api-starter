@@ -8,7 +8,7 @@
         <version>3.4.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.codewithmosh</groupId>
+    <groupId>com.danyanderson</groupId>
     <artifactId>store</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>store</name>
@@ -61,11 +61,11 @@
             <artifactId>flyway-mysql</artifactId>
             <groupId>org.flywaydb</groupId>
         </dependency>
-        <dependency>
-            <artifactId>lombok</artifactId>
-            <groupId>org.projectlombok</groupId>
-            <scope>annotationProcessor</scope>
-        </dependency>
+ <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.46</version>
+</dependency>
 
         <dependency>
     <groupId>org.springframework.boot</groupId>

@@ -64,7 +64,6 @@
  <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
-    <version>1.18.46</version>
 </dependency>
 
         <dependency>
@@ -77,27 +76,36 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-thymeleaf</artifactId>
 </dependency>
-
+<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct</artifactId>
+    <version>1.6.2</version>
+</dependency>
+<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct-processor</artifactId>
+    <version>1.6.3</version>
+</dependency>
 
     </dependencies>
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>10.15.0</version>
-                <configuration>
-                    <url>jdbc:mysql://localhost:3305/store_api?createDatabaseIfNotExist=true</url>
-                    <user>root</user>
-                    <password>MyPassword!</password>
-                    <cleanDisabled>false</cleanDisabled>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.13.0</version>
+            <configuration>
+                <release>23</release>
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>1.18.38</version>
+                    </path>
+                </annotationProcessorPaths>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 
 </project>

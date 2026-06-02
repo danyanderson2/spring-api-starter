@@ -16,9 +16,5 @@ public class UserDto {
     private Long id;
     private String name;
     private String email;
-    // @JsonInclude(JsonInclude.Include.NON_NULL) // exclude phone number if it's null
-    // private String phoneNumber;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") // format the date when we serialize it to json
-    private LocalDateTime createdAt;
 
 }

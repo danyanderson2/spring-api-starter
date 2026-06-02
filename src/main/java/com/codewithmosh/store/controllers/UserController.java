@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codewithmosh.store.dtos.UserDto;
 import com.codewithmosh.store.mappers.UserMapper;
@@ -24,8 +26,10 @@ public class UserController {
 
     @GetMapping()   // alias for RequestMapping because...well it's shorter than RequestMapping
     // http methods can either be GET, PUT POST or DELETE
-    public Iterable<UserDto> getAllUsers(){
-        return userRepository.findAll()
+    public Iterable<UserDto> getAllUsers(
+        @RequestParam String sort
+    ){
+        return userRepository.findAll(Sort.by(sort).ascending())  // it has a since it implements JpaRepository
         .stream()
         .map(user -> userMapper.toDto(user)) //userMapper::toDto is the same as user -> userMapper.toDto(user)
         .toList();

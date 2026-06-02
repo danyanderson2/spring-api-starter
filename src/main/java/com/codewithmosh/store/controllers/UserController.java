@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.ResponseEntity;
 
 import com.codewithmosh.store.dtos.UserDto;
+import com.codewithmosh.store.mappers.UserMapper;
 import com.codewithmosh.store.repositories.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -19,12 +20,14 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/users")
 public class UserController {
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
+
     @GetMapping()   // alias for RequestMapping because...well it's shorter than RequestMapping
     // http methods can either be GET, PUT POST or DELETE
     public Iterable<UserDto> getAllUsers(){
         return userRepository.findAll()
         .stream()
-        .map(user -> new UserDto(user.getId(),user.getName(), user.getEmail()))
+        .map(user -> userMapper.toDto(user)) //userMapper::toDto is the same as user -> userMapper.toDto(user)
         .toList();
     }
 
@@ -34,8 +37,6 @@ public class UserController {
         if (user == null){
             return ResponseEntity.notFound().build();
         }
-
-        var userDto = new UserDto(user.getId(), user.getName(), user.getEmail());
-        return ResponseEntity.ok(userDto);
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }

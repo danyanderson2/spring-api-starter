@@ -1,4 +1,11 @@
 package com.codewithmosh.store.dtos;
 
-public class RegisterUserRequest {
+import lombok.Data;
+
+
+@Data //replaces Getter, Setter, ...
+public class RegisterUserRequest { //encapsulates all the data we need for sending data to a new user
+   private String name;
+   private String email;
+   private String password;
 }

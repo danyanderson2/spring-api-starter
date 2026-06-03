@@ -2,6 +2,7 @@ package com.codewithmosh.store.controllers;
 
 import java.util.Set;
 
+import com.codewithmosh.store.dtos.RegisterUserRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Sort;
@@ -49,7 +50,8 @@ public class UserController {
         return ResponseEntity.ok(userMapper.toDto(user));
     }
     @PostMapping()
-    public UserDto createUser(@RequestBody UserDto data){
-        return data;
+    public UserDto createUser(@RequestBody RegisterUserRequest request){
+        System.out.println(userMapper.toEntity(request));
+        return null;
     }
 }

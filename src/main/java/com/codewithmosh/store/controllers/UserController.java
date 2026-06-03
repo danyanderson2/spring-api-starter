@@ -38,6 +38,7 @@ public class UserController {
         if (!Set.of( "name", "email").contains(sort)) // Set of valid values are name and email
         sort = "name"; // default value is name if the sort parameter is not provided or if it's not valid
 
+
         return userRepository.findAll(Sort.by(sort).ascending())  // it has a Sort sort loader since it implements JpaRepository
         .stream()
         .map(user -> userMapper.toDto(user)) //userMapper::toDto is the same as user -> userMapper.toDto(user)

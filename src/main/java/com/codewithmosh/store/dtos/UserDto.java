@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 public class UserDto {
-    // @JsonIgnore // exlude id
+    // @JsonIgnore // exclude id
     // @JsonProperty("user_id") // rename 
     private Long id;
     private String name;

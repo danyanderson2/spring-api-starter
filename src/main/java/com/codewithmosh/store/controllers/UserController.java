@@ -2,14 +2,9 @@ package com.codewithmosh.store.controllers;
 
 import java.util.Set;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 import com.codewithmosh.store.dtos.UserDto;
@@ -52,5 +47,9 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(userMapper.toDto(user));
+    }
+    @PostMapping()
+    public UserDto createUser(@RequestBody UserDto data){
+        return data;
     }
 }

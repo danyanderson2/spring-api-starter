@@ -31,8 +31,10 @@ public class UserController {
     @GetMapping()   // alias for RequestMapping because...well it's shorter than RequestMapping
     // http methods can either be GET, PUT POST or DELETE
     public Iterable<UserDto> getAllUsers(
-        @RequestParam(required=false, defaultValue="", name = "sort") String sort
+            @RequestParam(name = "x-auth-token") String authToken,
+            @RequestParam(required=false, defaultValue="", name = "sort") String sort
     ){
+        System.out.println(authToken);
         if (!Set.of( "name", "email").contains(sort)) // Set of valid values are name and email
         sort = "name"; // default value is name if the sort parameter is not provided or if it's not valid
 

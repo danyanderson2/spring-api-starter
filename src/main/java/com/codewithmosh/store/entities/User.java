@@ -63,7 +63,6 @@ public class User {
     public String toString() {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
-                "password = " + password +", "+
                 "name = " + name + ", " +
                 "email = " + email + ")";
     }

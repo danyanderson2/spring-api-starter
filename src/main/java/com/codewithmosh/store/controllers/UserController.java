@@ -15,6 +15,7 @@ import com.codewithmosh.store.repositories.UserRepository;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
@@ -50,8 +51,13 @@ public class UserController {
         return ResponseEntity.ok(userMapper.toDto(user));
     }
     @PostMapping()
-    public UserDto createUser(@RequestBody RegisterUserRequest request){
-        System.out.println(userMapper.toEntity(request));
-        return null;
+    public ResponseEntity<UserDto> createUser(
+            @RequestBody RegisterUserRequest request,
+            UriComponentsBuilder uriBuilder){
+        var user = userMapper.toEntity(request);
+        userRepository.save(user);
+        var userDto = userMapper.toDto(user);
+        var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
+        return ResponseEntity.created(uri).body(userDto);
     }
 }

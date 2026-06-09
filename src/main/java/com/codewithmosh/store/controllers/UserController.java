@@ -3,6 +3,7 @@ package com.codewithmosh.store.controllers;
 import java.util.Set;
 
 import com.codewithmosh.store.dtos.RegisterUserRequest;
+import com.codewithmosh.store.dtos.UpdateUserRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.data.domain.Sort;
@@ -59,5 +60,19 @@ public class UserController {
         var userDto = userMapper.toDto(user);
         var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
         return ResponseEntity.created(uri).body(userDto);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable(name = "id") Long id,
+                              @RequestBody UpdateUserRequest request){
+        var user = userRepository.findById(id).orElse(null);
+        if (user == null){
+            ResponseEntity.notFound().build();
+        }
+        userMapper.update(request,user);
+        assert user != null;
+        userRepository.save(user);
+
+        return ResponseEntity.ok(userMapper.toDto(user));
+
     }
 }

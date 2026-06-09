@@ -68,6 +68,7 @@ public class UserController {
         if (user == null){
             ResponseEntity.notFound().build();
         }
+
         userMapper.update(request,user);
         assert user != null;
         userRepository.save(user);
